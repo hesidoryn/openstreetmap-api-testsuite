@@ -14,7 +14,6 @@ the assumption that the code is shared with the more basic calls.
 */
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import bootstrap._
 
 object WayFullScenarios {
   val wayFullScn = scenario("Way Full tests")

@@ -8,7 +8,6 @@ Defines various test cases for ways
 */
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import bootstrap._
 
 object WayScenarios {
   val wayScn = scenario("Way tests")

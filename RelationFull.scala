@@ -14,7 +14,6 @@ the assumption that the code is shared with the more basic calls.
 */
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import bootstrap._
 
 object RelationFullScenarios {
   val relationFullScn = scenario("Relation Full tests")

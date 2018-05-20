@@ -8,7 +8,6 @@ Defines various test cases for relations
 */
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import bootstrap._
 
 object RelationScenarios {
   val relationScn = scenario("Relation tests")

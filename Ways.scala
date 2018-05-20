@@ -10,7 +10,6 @@ Note: This test re-uses the XML from the /way/# tests
 */
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import bootstrap._
 
 object WaysScenarios {
 

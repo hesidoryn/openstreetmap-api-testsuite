@@ -10,7 +10,6 @@ Note: This test re-uses the XML from the /relations/# tests
 */
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import bootstrap._
 
 object RelationsScenarios {
   val relationsScn = scenario("Relations tests")

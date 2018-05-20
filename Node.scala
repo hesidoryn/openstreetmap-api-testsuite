@@ -8,7 +8,6 @@ Defines various test cases for nodes
 */
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import bootstrap._
 
 object NodeScenarios {
   def stripZero = (s:Option[String]) => s.map(_.replaceAll("0+$",""))
