@@ -16,7 +16,7 @@ class ApiSimulation extends Simulation {
   // Depending on how your API is deployed you may need to change the baseURL
   // For a rails port running as ``bundle exec rails server`` it should be
   // http://localhost:3000/api
-  private val ApiBase = "http://localhost:3000/api"
+  private val ApiBase = "http://localhost:8090/api"
 
   // Do not edit below here
   val httpProtocol = http
@@ -27,19 +27,19 @@ class ApiSimulation extends Simulation {
   setUp(
     NodeScenarios.nodeScn.inject(atOnceUsers(1)),
     NodeScenarios.nodeDiffScn.inject(nothingFor(250 milliseconds), atOnceUsers(1)),
-    // NodesScenarios.nodesScn.inject(nothingFor(500 milliseconds), atOnceUsers(1)),
-    // NodesScenarios.nodesDiffScn.inject(nothingFor(750 milliseconds), atOnceUsers(1)),
-    // WayScenarios.wayScn.inject(nothingFor(1000 milliseconds), atOnceUsers(1)),
-    // WayScenarios.wayDiffScn.inject(nothingFor(1250 milliseconds), atOnceUsers(1)),
-    // WaysScenarios.waysScn.inject(nothingFor(1500 milliseconds), atOnceUsers(1)),
-    // WaysScenarios.waysDiffScn.inject(nothingFor(1750 milliseconds), atOnceUsers(1)),
-    // RelationScenarios.relationScn.inject(nothingFor(2000 milliseconds), atOnceUsers(1)),
-    // RelationScenarios.relationDiffScn.inject(nothingFor(2250 milliseconds), atOnceUsers(1)),
-    // RelationsScenarios.relationsScn.inject(nothingFor(2500 milliseconds), atOnceUsers(1)),
-    // RelationsScenarios.relationsDiffScn.inject(nothingFor(2750 milliseconds), atOnceUsers(1)),
-    // WayFullScenarios.wayFullScn.inject(nothingFor(3000 milliseconds), atOnceUsers(1)),
-    // WayFullScenarios.wayFullDiffScn.inject(nothingFor(3250 milliseconds), atOnceUsers(1)),
-    // RelationFullScenarios.relationFullScn.inject(nothingFor(3000 milliseconds), atOnceUsers(1))
+    NodesScenarios.nodesScn.inject(nothingFor(500 milliseconds), atOnceUsers(1)),
+    NodesScenarios.nodesDiffScn.inject(nothingFor(750 milliseconds), atOnceUsers(1)),
+    WayScenarios.wayScn.inject(nothingFor(1000 milliseconds), atOnceUsers(1)),
+    WayScenarios.wayDiffScn.inject(nothingFor(1250 milliseconds), atOnceUsers(1)),
+    WaysScenarios.waysScn.inject(nothingFor(1500 milliseconds), atOnceUsers(1)),
+    WaysScenarios.waysDiffScn.inject(nothingFor(1750 milliseconds), atOnceUsers(1)),
+    RelationScenarios.relationScn.inject(nothingFor(2000 milliseconds), atOnceUsers(1)),
+    RelationScenarios.relationDiffScn.inject(nothingFor(2250 milliseconds), atOnceUsers(1)),
+    RelationsScenarios.relationsScn.inject(nothingFor(2500 milliseconds), atOnceUsers(1)),
+    RelationsScenarios.relationsDiffScn.inject(nothingFor(2750 milliseconds), atOnceUsers(1)),
+    WayFullScenarios.wayFullScn.inject(nothingFor(3000 milliseconds), atOnceUsers(1)),
+    WayFullScenarios.wayFullDiffScn.inject(nothingFor(3250 milliseconds), atOnceUsers(1)),
+    RelationFullScenarios.relationFullScn.inject(nothingFor(3000 milliseconds), atOnceUsers(1))
   )
   .protocols(httpProtocol)
   .assertions(global.failedRequests.count.is(0))
@@ -83,9 +83,9 @@ object checks {
         xpath("""/osm/node[@id="""" + id + """"]/@changeset""").is(changesetid)
 
       def lat(id: Int, lat: String): HttpCheck =
-        xpath("""/osm/node[@id="""" + id + """"]/@lat""").transform(s=>stripZero(Option(s))).is(lat)
+        xpath("""/osm/node[@id="""" + id + """"]/@lat""").is(lat)
       def lon(id: Int, lon: String): HttpCheck =
-        xpath("""/osm/node[@id="""" + id + """"]/@lon""").transform(s=>stripZero(Option(s))).is(lon)
+        xpath("""/osm/node[@id="""" + id + """"]/@lon""").is(lon)
 
       def children(id: Int, n: Int): HttpCheck =
         xpath("""/osm/node[@id="""" + id + """"]/*""").count.is(n)
